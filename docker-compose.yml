@@ -149,26 +149,6 @@ services:
        - ./apps:/opt/spark-apps
        - ./data:/opt/spark-data
 
-  kafka_manager:
-    image: hlebalbau/kafka-manager:1.3.3.18
-    container_name: kafka-manager
-    hostname: kafka-manger
-    expose:
-      - "9000"
-    ports:
-      - 9000:9000
-    environment:
-      ZK_HOSTS: "zookeeper:2181"
-      APPLICATION_SECRET: "random-secret"
-      command: -Dpidfile.path=/dev/null
-    links:
-        - kafka-1
-        - kafka-2
-        - zookeeper
-    depends_on:
-        - "zookeeper"
-        - "kafka-1"
-        - "kafka-2"
   database:
     image: mongo
     container_name: mongo-container
